@@ -159,45 +159,8 @@ const obatList = [
 ];
 
 // =====================================================
-// DAFTAR MEMBER APOTEK (Mock Table: member)
-// =====================================================
-const memberList = [
-  { id: "MBR001", nama: "Budi Santoso",    level: "silver",   diskon: 5  },
-  { id: "MBR002", nama: "Siti Rahayu",     level: "gold",     diskon: 10 },
-  { id: "MBR003", nama: "Ahmad Wijaya",    level: "platinum", diskon: 15 },
-  { id: "MBR004", nama: "Dewi Lestari",    level: "silver",   diskon: 5  },
-  { id: "MBR005", nama: "Reza Pratama",    level: "gold",     diskon: 10 },
-];
-
-// =====================================================
-// KONFIGURASI ASURANSI & BPJS (Mock Table: asuransi)
-// =====================================================
-const asuransiConfig = {
-  asuransi: {
-    nama: "Asuransi Kesehatan Swasta",
-    persenCover: 70,               // Cover 70% dari harga obat
-    maksCoverPerItem: 50000,       // Maks cover Rp 50.000 per item
-    maksCoverTotal: 500000,        // Maks cover Rp 500.000 per transaksi
-  },
-  bpjs: {
-    nama: "BPJS Kesehatan",
-    persenCover: 100,              // Cover 100% untuk obat yang dicover
-    maksCoverPerItem: 30000,       // Maks cover Rp 30.000 per item
-    maksCoverTotal: 300000,        // Maks cover Rp 300.000 per transaksi
-  },
-};
-
-// =====================================================
-// LOG TRANSAKSI (Mock Table: transaksi)
-// =====================================================
-const transaksiLog = [];
-
-// =====================================================
 // EXPORTS
 // =====================================================
 module.exports = {
   obatList,
-  memberList,
-  asuransiConfig,
-  transaksiLog,
 };

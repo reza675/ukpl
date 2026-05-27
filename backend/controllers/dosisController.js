@@ -4,7 +4,7 @@
  * =========================================================
  * Fungsi utama: hitungDosisObat
  *
- * RISIKO FATAL: Kesalahan kalkulasi dosis berdampak
+ * Kesalahan kalkulasi dosis berdampak
  * langsung terhadap NYAWA PASIEN.
  *
  * CYCLOMATIC COMPLEXITY: ~25
@@ -45,7 +45,6 @@ function hitungDosisObat(req, res) {
   );
 
   if (!obat) {
-    // Decision: obat tidak ditemukan
     return res.status(404).json({
       success: false,
       error: {
@@ -58,7 +57,6 @@ function hitungDosisObat(req, res) {
 
   // Validasi kecocokan jenis obat dengan data di DB
   if (obat.jenis !== jenisObat) {
-    // Decision: jenis obat tidak cocok
     return res.status(400).json({
       success: false,
       error: {
@@ -80,7 +78,7 @@ function hitungDosisObat(req, res) {
   if (umur >= 0 && umur <= 1) {
     // BAYI (0-1 tahun) — dosis berbasis BB langsung / Rumus Fried
     kategoriUmur = "bayi";
-    faktorUmur = 0.2; // Referensi informatif saja (tidak dipakai di kalkulasi)
+    faktorUmur = 0.2;
     peringatanList.push(
       "⚠️ PERHATIAN: Pasien kategori BAYI. Dosis dihitung berbasis mg/kgBB langsung (untuk obat berdasarkan BB) atau Rumus Fried (untuk obat dosis tetap)."
     );
@@ -93,9 +91,9 @@ function hitungDosisObat(req, res) {
       return res.status(403).json({
         success: false,
         error: {
-          code: "FATAL_RISK",
+          code: "FATAL",
           severity: "CRITICAL",
-          message: `🚨 RISIKO FATAL: Obat "${obat.nama}" berjenis KERAS tidak boleh diberikan kepada BAYI (umur ${umur} tahun). Konsultasikan dengan dokter spesialis anak.`,
+          message: `Obat "${obat.nama}" berjenis KERAS tidak boleh diberikan kepada BAYI (umur ${umur} tahun). Konsultasikan dengan dokter spesialis anak.`,
           field: "jenisObat",
           kategoriPasien: kategoriUmur,
         },
@@ -105,9 +103,9 @@ function hitungDosisObat(req, res) {
       return res.status(403).json({
         success: false,
         error: {
-          code: "FATAL_RISK",
+          code: "FATAL",
           severity: "CRITICAL",
-          message: `🚨 RISIKO FATAL: Obat "${obat.nama}" berjenis PSIKOTROPIKA dilarang keras untuk BAYI. Dapat menyebabkan depresi sistem saraf pusat yang fatal.`,
+          message: `Obat "${obat.nama}" berjenis PSIKOTROPIKA dilarang keras untuk BAYI. Dapat menyebabkan depresi sistem saraf pusat yang fatal.`,
           field: "jenisObat",
           kategoriPasien: kategoriUmur,
         },
@@ -118,7 +116,7 @@ function hitungDosisObat(req, res) {
   } else if (umur >= 2 && umur <= 12) {
     // ANAK (2-12 tahun)
     kategoriUmur = "anak";
-    faktorUmur = 0.5; // Referensi informatif saja
+    faktorUmur = 0.5;
     peringatanList.push(
       "ℹ️ Pasien kategori ANAK. Dosis dihitung berbasis mg/kgBB langsung (pediatri) atau Rumus Young (untuk obat dosis tetap)."
     );
@@ -131,9 +129,9 @@ function hitungDosisObat(req, res) {
       return res.status(403).json({
         success: false,
         error: {
-          code: "FATAL_RISK",
+          code: "FATAL",
           severity: "CRITICAL",
-          message: `🚨 RISIKO FATAL: Obat "${obat.nama}" berjenis PSIKOTROPIKA tidak boleh diberikan kepada ANAK di bawah 18 tahun (umur ${umur} tahun).`,
+          message: `Obat "${obat.nama}" berjenis PSIKOTROPIKA tidak boleh diberikan kepada ANAK di bawah 18 tahun (umur ${umur} tahun).`,
           field: "jenisObat",
           kategoriPasien: kategoriUmur,
         },
@@ -143,14 +141,14 @@ function hitungDosisObat(req, res) {
     if (jenisObat === "keras") {
       // Obat keras untuk anak → izinkan tapi beri peringatan
       peringatanList.push(
-        `⚠️ PERHATIAN: Obat keras "${obat.nama}" untuk anak. Wajib dengan resep dan pengawasan dokter.`
+        `⚠️ PERHATIAN: Obat keras "${obat.nama}" untuk anak.  `
       );
     }
 
   } else if (umur >= 13 && umur <= 17) {
     // REMAJA (13-17 tahun)
     kategoriUmur = "remaja";
-    faktorUmur = 0.75; // Referensi informatif saja
+    faktorUmur = 0.75;
     peringatanList.push(
       "ℹ️ Pasien kategori REMAJA. Dosis dihitung berbasis mg/kgBB (di-cap ke dosis dewasa standar) atau Rumus Young."
     );
@@ -163,9 +161,9 @@ function hitungDosisObat(req, res) {
       return res.status(403).json({
         success: false,
         error: {
-          code: "FATAL_RISK",
+          code: "FATAL",
           severity: "CRITICAL",
-          message: `🚨 RISIKO FATAL: Obat "${obat.nama}" berjenis PSIKOTROPIKA tidak boleh diberikan kepada pasien di bawah 18 tahun (umur ${umur} tahun).`,
+          message: `Obat "${obat.nama}" berjenis PSIKOTROPIKA tidak boleh diberikan kepada pasien di bawah 18 tahun (umur ${umur} tahun).`,
           field: "jenisObat",
           kategoriPasien: kategoriUmur,
         },
@@ -226,14 +224,14 @@ function hitungDosisObat(req, res) {
       }
     }
 
-    // Jika ada alergi yang cocok → TOLAK (risiko fatal: anafilaksis)
+    // Jika ada alergi yang cocok → TOLAK  anafilaksis)
     if (alergiCocok.length > 0) {
       return res.status(403).json({
         success: false,
         error: {
           code: "ALERGI_KONTRAINDIKASI",
           severity: "CRITICAL",
-          message: `🚨 RISIKO FATAL: Pasien memiliki riwayat alergi/kondisi yang merupakan KONTRAINDIKASI obat "${obat.nama}". Pemberian obat ini dapat menyebabkan reaksi anafilaksis yang mengancam nyawa.`,
+          message: `Pasien memiliki riwayat alergi/kondisi yang merupakan KONTRAINDIKASI obat "${obat.nama}". Pemberian obat ini dapat menyebabkan reaksi anafilaksis yang mengancam nyawa.`,
           detail: alergiCocok,
           field: "rpiAlergi",
         },

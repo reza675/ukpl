@@ -77,7 +77,7 @@ function ToastItem({ toast, onRemove }) {
             <p className={`text-sm font-bold ${style.title} mb-1`}>
               {toast.title || (toast.type === "error" ? "Error" : toast.type === "success" ? "Berhasil" : "Peringatan")}
             </p>
-            <p className="text-sm text-slate-300 leading-relaxed break-words">
+            <p className="text-sm text-slate-300 leading-relaxed break-words whitespace-pre-line">
               {toast.message}
             </p>
           </div>

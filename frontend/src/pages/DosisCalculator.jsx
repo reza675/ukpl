@@ -105,10 +105,19 @@ export default function DosisCalculator({ addToast }) {
         setResult(response.data);
 
         // Cek apakah ada peringatan
-        if (response.data.keamanan.status === "WARNING") {
-          addToast("warning", response.data.keamanan.peringatan.join(" | "), "Peringatan Dosis");
-        } else if (response.data.keamanan.status === "CAUTION") {
-          addToast("warning", response.data.keamanan.peringatan.join(" | "), "Perhatian");
+        if (response.data.keamanan.status === "WARNING" || response.data.keamanan.status === "CAUTION") {
+          const warningMsgs = (response.data.keamanan.peringatan || [])
+            .filter(p => p && p.trim().startsWith("⚠️"))
+            .map(p => p.replace("⚠️", "").trim())
+            .join("\n\n");
+
+          const title = response.data.keamanan.status === "WARNING" ? "Peringatan Dosis!" : "Perhatian";
+
+          if (warningMsgs) {
+            addToast("warning", warningMsgs, title);
+          } else {
+            addToast("success", `Dosis ${form.namaObat} berhasil dihitung. Status: ${response.data.keamanan.status}.`);
+          }
         } else {
           addToast("success", `Dosis ${form.namaObat} berhasil dihitung. Status: AMAN.`);
         }
@@ -332,15 +341,22 @@ export default function DosisCalculator({ addToast }) {
                 )}
               </div>
 
-              {/* Peringatan */}
+              {/* Peringatan & Informasi */}
               {result.keamanan.peringatan.length > 0 && (
-                <div className="space-y-2">
-                  <h3 className="text-xs font-semibold text-amber-400 uppercase tracking-wider">Peringatan</h3>
-                  {result.keamanan.peringatan.map((p, i) => (
-                    <div key={i} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/15 text-xs text-amber-300 leading-relaxed">
-                      {p}
-                    </div>
-                  ))}
+                <div className="space-y-2 mt-4">
+                  <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Catatan Kalkulasi</h3>
+                  {result.keamanan.peringatan.map((p, i) => {
+                    const isInfo = p.trim().startsWith("ℹ️");
+                    return (
+                      <div key={i} className={`p-3 rounded-xl border text-xs leading-relaxed shadow-sm ${
+                        isInfo 
+                          ? "bg-blue-50/50 border-blue-200 text-blue-700" 
+                          : "bg-amber-50/80 border-amber-200 text-amber-700 font-medium"
+                      }`}>
+                        {p}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
