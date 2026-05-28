@@ -156,6 +156,19 @@ const obatList = [
     dicover_asuransi: false,
     dicover_bpjs: true,
   },
+  {
+    id: "OBTDUMMY23",
+    nama: "ObatDummyTanpaDosis",
+    jenis: "bebas",
+    stok: 100,
+    harga: 1000,
+    dosisPerKg: 0,
+    dosisTetap: 0,
+    maksDosisHarian: 100,
+    kontraindikasi: [],
+    dicover_asuransi: false,
+    dicover_bpjs: false,
+  }
 ];
 
 // =====================================================

@@ -1,0 +1,15 @@
+{
+  "namaObat": "Ibuprofen",
+  "umur": 1,
+  "beratBadan": 7,
+  "jenisObat": "bebas",
+  "rpiAlergi": [
+        "alergi_penisilin",
+        "alergi_amoxicillin",
+        "alergi_opioid",
+        "asma_akut",
+        "depresi_pernapasan",
+        "asidosis_laktat",
+        "alergi_opioid"
+    ]
+}

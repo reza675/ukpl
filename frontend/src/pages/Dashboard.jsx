@@ -60,7 +60,7 @@ export default function Dashboard() {
 
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-4 rounded-2xl bg-slate-50 border border-slate-100">
-                <h3 className="text-2xl font-extrabold text-slate-800">12+</h3>
+                <h3 className="text-2xl font-extrabold text-slate-800">12</h3>
                 <p className="text-[10px] uppercase tracking-wider text-slate-500 mt-1 font-semibold">Obat Aktif</p>
               </div>
               <div className="text-center p-4 rounded-2xl bg-slate-50 border border-slate-100">

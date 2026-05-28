@@ -1,0 +1,7 @@
+{
+  "namaObat": "Amoxicillin",
+  "umur": 65,
+  "beratBadan": 70,
+  "jenisObat": "keras",
+  "rpiAlergi": ["alergi_paracetamol"]
+}
