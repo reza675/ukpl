@@ -2,11 +2,6 @@ import { useState } from "react";
 import LoadingButton from "../components/LoadingButton";
 import { hitungDosis } from "../api/apiClient";
 
-/**
- * DosisCalculator - Halaman Kalkulator Dosis Obat
- */
-
-// Daftar obat yang tersedia
 const OBAT_OPTIONS = [
   { nama: "Paracetamol", jenis: "bebas" },
   { nama: "Amoxicillin", jenis: "keras" },
@@ -22,7 +17,6 @@ const OBAT_OPTIONS = [
   { nama: "Antasida DOEN", jenis: "bebas" },
 ];
 
-// Daftar alergi yang bisa dipilih
 const ALERGI_OPTIONS = [
   "alergi_paracetamol",
   "gangguan_hati_berat",
@@ -60,12 +54,10 @@ export default function DosisCalculator({ addToast }) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
 
-  // Update form field
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
 
-    // Auto-fill jenis obat saat memilih obat
     if (name === "namaObat") {
       const selected = OBAT_OPTIONS.find((o) => o.nama === value);
       if (selected) {
@@ -74,7 +66,6 @@ export default function DosisCalculator({ addToast }) {
     }
   };
 
-  // Toggle alergi checkbox
   const handleAlergiToggle = (alergi) => {
     setForm((prev) => ({
       ...prev,
@@ -84,7 +75,6 @@ export default function DosisCalculator({ addToast }) {
     }));
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -104,7 +94,6 @@ export default function DosisCalculator({ addToast }) {
       if (response.success) {
         setResult(response.data);
 
-        // Cek apakah ada peringatan
         if (response.data.keamanan.status === "WARNING" || response.data.keamanan.status === "CAUTION") {
           const warningMsgs = (response.data.keamanan.peringatan || [])
             .filter(p => p && p.trim().startsWith("⚠️"))
@@ -135,7 +124,6 @@ export default function DosisCalculator({ addToast }) {
     }
   };
 
-  // Badge warna untuk jenis obat
   const jenisColor = {
     bebas: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
     keras: "bg-amber-500/20 text-amber-400 border-amber-500/30",
@@ -145,7 +133,6 @@ export default function DosisCalculator({ addToast }) {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="grid lg:grid-cols-5 gap-6">
-        {/* Form Panel */}
         <form onSubmit={handleSubmit} className="lg:col-span-3 glass-card p-6 md:p-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
           <h2 className="text-xl font-extrabold text-slate-800 mb-6 flex items-center gap-3 border-b border-slate-100 pb-4">
             <span className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm font-bold shadow-sm">

@@ -5,22 +5,13 @@ import Dashboard from "./pages/Dashboard";
 import DosisCalculator from "./pages/DosisCalculator";
 import TentangDosis from "./pages/TentangDosis";
 
-/**
- * App - Komponen utama PharmaSafe
- *
- * Router dengan halaman:
- * - / → Dashboard & Kalkulator Dosis
- * - /tentang-dosis → Tentang Dosis
- */
 export default function App() {
   const { toasts, addToast, removeToast } = useToast();
 
   return (
     <BrowserRouter>
-      {/* Toast Notifications (Global) */}
       <Toast toasts={toasts} removeToast={removeToast} />
 
-      {/* Navbar */}
       <Navbar />
 
       {/* Page Content */}

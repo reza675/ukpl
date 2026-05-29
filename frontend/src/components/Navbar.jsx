@@ -1,14 +1,10 @@
 import { NavLink } from "react-router-dom";
 
-/**
- * Navbar - Navigation bar utama PharmaSafe
- */
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-40 backdrop-blur-xl bg-white/70 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <NavLink to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/30">
               <span className="text-white font-bold text-xl leading-none">P</span>
@@ -23,7 +19,6 @@ export default function Navbar() {
             </div>
           </NavLink>
 
-          {/* Nav Links */}
           <div className="flex items-center gap-1">
             <NavLink
               to="/"

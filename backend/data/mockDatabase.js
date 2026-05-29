@@ -1,24 +1,12 @@
-/**
- * =========================================================
- * MOCK DATABASE - Simulasi Data Apotek
- * =========================================================
- * File ini berisi array dummy yang berfungsi sebagai
- * pengganti database asli untuk keperluan pengujian SQA.
- * =========================================================
- */
-
-// =====================================================
-// DAFTAR OBAT (Mock Table: obat)
-// =====================================================
 const obatList = [
   {
     id: "OBT001",
     nama: "Paracetamol",
-    jenis: "bebas",          // bebas | keras | psikotropika
+    jenis: "bebas",
     stok: 150,
-    harga: 5000,             // Rupiah per tablet/strip
-    dosisPerKg: 15,          // mg per kg berat badan
-    maksDosisHarian: 4000,   // mg per hari (maks)
+    harga: 5000,
+    dosisPerKg: 15,
+    maksDosisHarian: 4000,
     kontraindikasi: ["alergi_paracetamol", "gangguan_hati_berat"],
     dicover_asuransi: true,
     dicover_bpjs: true,
@@ -149,8 +137,8 @@ const obatList = [
     jenis: "bebas",
     stok: 250,
     harga: 4000,
-    dosisPerKg: 0,          // Dosis tetap, tidak berdasarkan berat
-    dosisTetap: 500,        // mg per pemberian
+    dosisPerKg: 0,
+    dosisTetap: 500,
     maksDosisHarian: 4000,
     kontraindikasi: ["gagal_ginjal"],
     dicover_asuransi: false,
@@ -171,9 +159,6 @@ const obatList = [
   }
 ];
 
-// =====================================================
-// EXPORTS
-// =====================================================
 module.exports = {
   obatList,
 };

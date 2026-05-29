@@ -1,11 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 
-/**
- * Toast Component - Notifikasi alert
- *
- * Merah tegas untuk error fatal, hijau untuk sukses,
- * kuning untuk peringatan. Auto-dismiss 5 detik.
- */
 export default function Toast({ toasts, removeToast }) {
   return (
     <div className="fixed top-4 right-4 z-50 flex flex-col gap-3 max-w-md w-full pointer-events-none">
@@ -65,7 +59,6 @@ function ToastItem({ toast, onRemove }) {
         backdrop-blur-xl border rounded-xl shadow-2xl overflow-hidden
       `}
     >
-      {/* Progress bar */}
       <div className={`h-1 ${style.bar}`} style={{
         animation: "shrink 5s linear forwards",
       }} />
@@ -101,10 +94,6 @@ function ToastItem({ toast, onRemove }) {
   );
 }
 
-/**
- * Custom Hook: useToast
- * Mengelola state toast notifications
- */
 export function useToast() {
   const [toasts, setToasts] = useState([]);
 

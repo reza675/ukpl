@@ -1,15 +1,9 @@
-/**
- * LoadingButton - Tombol dengan state loading
- *
- * Saat loading: disabled, tampilkan spinner, ubah teks.
- * Mencegah double-click oleh user.
- */
 export default function LoadingButton({
   onClick,
   isLoading = false,
   children,
   loadingText = "Memproses...",
-  variant = "primary", // primary | danger | secondary
+  variant = "primary",
   className = "",
   type = "button",
   disabled = false,

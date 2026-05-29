@@ -11,7 +11,6 @@ export default function TentangDosis() {
       </div>
 
       <div className="space-y-8">
-        {/* mg/kgBB Section */}
         <section className="glass-card p-6 md:p-8">
           <h2 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">
             Metode Berbasis Berat Badan (mg/kgBB)

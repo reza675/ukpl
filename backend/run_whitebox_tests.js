@@ -1,22 +1,6 @@
-/**
- * =========================================================
- * SKRIP WHITEBOX TESTING - BASIS PATH TESTING (McCabe)
- * =========================================================
- * Skrip ini melakukan eksekusi 25 Independent Paths (Jalur Independen)
- * secara otomatis ke endpoint API Kalkulator Dosis.
- * 
- * Pengujian ini merepresentasikan 100% Path Coverage 
- * berdasarkan metrik Cyclomatic Complexity V(G) = 25.
- * =========================================================
- */
-
 const BASE_URL = "http://localhost:5000/api/dosis/hitung";
 
-// Matriks 25 Test Cases berdasarkan Dokumentasi SQA
 const testCases = [
-  // ---------------------------------------------------------
-  // SEGMENT 1: Validasi Input & Database (P1, P2)
-  // ---------------------------------------------------------
   {
     id: "TC01",
     path: "P1",
@@ -32,9 +16,6 @@ const testCases = [
     expectedStatus: 400
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 2: Kategori BAYI (P3, P4, P5)
-  // ---------------------------------------------------------
   {
     id: "TC03",
     path: "P3",
@@ -57,9 +38,6 @@ const testCases = [
     expectedStatus: 200
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 2: Kategori ANAK (P6, P7, P8)
-  // ---------------------------------------------------------
   {
     id: "TC06",
     path: "P6",
@@ -82,9 +60,6 @@ const testCases = [
     expectedStatus: 200
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 2: Kategori REMAJA (P9, P10, P11)
-  // ---------------------------------------------------------
   {
     id: "TC09",
     path: "P9",
@@ -107,9 +82,6 @@ const testCases = [
     expectedStatus: 200
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 2: Kategori DEWASA (P12)
-  // ---------------------------------------------------------
   {
     id: "TC12",
     path: "P12",
@@ -118,9 +90,6 @@ const testCases = [
     expectedStatus: 200
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 2: Kategori LANSIA (P13, P14, P15)
-  // ---------------------------------------------------------
   {
     id: "TC13",
     path: "P13",
@@ -143,9 +112,6 @@ const testCases = [
     expectedStatus: 200
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 2: Fallthrough BVA Umur (P16)
-  // ---------------------------------------------------------
   {
     id: "TC16",
     path: "P16",
@@ -154,9 +120,6 @@ const testCases = [
     expectedStatus: 400
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 3: Algoritma Pencocokan Alergi (P17, P18)
-  // ---------------------------------------------------------
   {
     id: "TC17",
     path: "P17",
@@ -172,9 +135,6 @@ const testCases = [
     expectedStatus: 200
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 3: Dosis Tetap (Tanpa BB) (P19, P20, P21, P22)
-  // ---------------------------------------------------------
   {
     id: "TC19",
     path: "P19",
@@ -204,9 +164,6 @@ const testCases = [
     expectedStatus: 200
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 3: Fallthrough Dosis Kosong (P23)
-  // ---------------------------------------------------------
   {
     id: "TC23",
     path: "P23",
@@ -215,9 +172,6 @@ const testCases = [
     expectedStatus: 500
   },
 
-  // ---------------------------------------------------------
-  // SEGMENT 4: Validasi Maksimum (P24, P25)
-  // ---------------------------------------------------------
   {
     id: "TC24",
     path: "P24",
@@ -234,7 +188,6 @@ const testCases = [
   }
 ];
 
-// Menjalankan testing
 async function runTests() {
   console.log("===============================================================");
   console.log(" 🧪 EXECUTING 25 INDEPENDENT PATHS TESTING (SQA - V(G)=25)");
@@ -254,7 +207,6 @@ async function runTests() {
 
       const actualStatus = response.status;
       
-      // Ambil body response untuk debugging opsional
       let responseBody = {};
       try {
         responseBody = await response.json();
@@ -297,5 +249,4 @@ async function runTests() {
   }
 }
 
-// Invoke the test
 runTests();

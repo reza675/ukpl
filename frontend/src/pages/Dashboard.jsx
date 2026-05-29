@@ -6,7 +6,6 @@ export default function Dashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 lg:py-24 animate-fade-in-up">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
-        {/* Left Section - Hero Copy */}
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold tracking-wider uppercase border border-emerald-100 shadow-sm">
             <span>MEDICAL DOSAGE SYSTEM</span>
@@ -40,11 +39,9 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Right Section - Dashboard Graphic/Stats */}
         <div className="relative stagger-children">
           {/* Main Card */}
           <div className="glass-card bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 relative z-10 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-            {/* Window Controls */}
             <div className="flex gap-2 mb-8">
               <div className="w-3 h-3 rounded-full bg-red-400"></div>
               <div className="w-3 h-3 rounded-full bg-amber-400"></div>
@@ -74,7 +71,6 @@ export default function Dashboard() {
             </div>
           </div>
           
-          {/* Decorative Elements */}
           <div className="absolute -top-10 -right-10 w-32 h-32 bg-emerald-400/20 rounded-full blur-3xl z-0"></div>
           <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-teal-400/20 rounded-full blur-3xl z-0"></div>
         </div>
